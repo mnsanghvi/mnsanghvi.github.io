@@ -9,10 +9,10 @@ image: iquiw/alpine-emacs
 
 pages:
   <<: *build
-  only:
-  - master
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
 
 test:
   <<: *build
-  except:
-  - master
+  rules:
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
