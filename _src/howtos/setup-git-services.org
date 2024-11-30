@@ -1,0 +1,40 @@
+#+SETUPFILE: "~/org/personal-web-site/_org-setupfiles/level-1.org"
+#+STARTUP: showall
+#+HTML_LINK_UP: index.html
+#+COMMENT: C-c C-e P p
+#+TITLE: Setup our own Git hosting services
+
+* Introduction
+
+This document describes how to setup your very own Git hosting
+services using [[https://gitea.io/][Gitea]], a Git hosting service written in [[https://golang.org/][Go]].  This is a
+lightweight service, and extremely fast.
+
+
+* What to install
+
+#+BEGIN_SRC sh
+bash$ sudo apt-get update
+bash$ sudo apt-get install libpam0g-dev
+#+END_SRC
+
+* Security Certificates
+
+
+start with http://git.sanghvi.org:3000/install
+export GOPATH=/home/git/gocode
+mkdir -p ~git/{conf,log,_GIT_REPOS,.ssl}
+cd ~git
+ln -s gocode/src/code.gitea.io/gitea .
+
+
+
+https://gist.github.com/mabutler/1ffce5eca2b6b1260db3
+
+
+* Gitea
+
+
+
+
+

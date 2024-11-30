@@ -1,0 +1,71 @@
+#+SETUPFILE: "~/org/personal-web-site/_org-setupfiles/level-1.org"
+#+STARTUP: showall
+#+HTML_LINK_UP: index.html
+#+HTML_LINK_HOME: ../index.html
+#+COMMENT: C-c C-e P p
+#+TITLE: My Debian Oasis
+#+SUBTITLE: A Debian Oasis in a Windows Desert
+
+#+BEGIN_abstract
+This is my set of notes on what I had to do in order to get it to
+work on the laptop I was given at PatientKeeper, a ThinkPad 
+T500. Debian is my preferred Linux distro because of its simplicity 
+from a package management point of view. Also I do not like to use 
+GNOME or KDE. I normally use X11/vtwm, but have switched to using 
+XFCE instead over the 2009 summer. 
+#+END_abstract
+
+#+TOC: headlines 2
+
+* Desktop
+** X11/(vtwm|jwm)
+*** vtwm
+my favourite, the one I always fall back on. Need to figure out this weird interaction with vtwm where focus just gets kept on one window no matter what happens. You have to restart it to get it work properly again.
+*** StumpWM
+For the keyboard junkies. It is a Lisp based tiling window manager, so you only have one or two windows open at a time, making it easier for you to focus. It supports "virtual desktops" using what it calls "grouping". Your fingers will never have to leave the keyboard !!! Takes a little getting used to with the keybindings, but they are easy to change around from the defaults. And you can customise stumpwm while its running without the need to re-load the config file or restart the window manager !
+*** jwm
+my current window manager of choice. works just great, simple, can use my key bindings, and has a taskbar !!
+** XFce
+Stopped using XFce for now, although if I need a "proper" desktop that is the one I'd use.
+* Graphics Support
+** ATI
+*** Xorg driver
+The radeon xorg driver works just fine for most things, although in order to conserv power I am not using it. Using the ATI driver (xorg or proprietary) makes the battery last half as long as it would otherwise.
+*** Proprietary driver
+** Intel Mobile 4 Integrated Graphics Controller
+This takes care of my needs (efficient power use) while delivering good 2D performance. If you want to do 3D stuff or want the fancy desktop effects for KDE/GOME/Compiz, etc. then you probably do not want to use this.
+* Hardware Specs
+** ThinkPad T50
+*** Fingerprint Reader
+** ThinkPad T430
+** PowerMac G4 AGP Graphics
+* Linux Kernel
+** IPv6
+ensure that net.ipv6.bindv6only is disabled using sysctl
+** Networking
+*** Bluetooth
+*** Ethernet
+Wicd takes care of this as well. The only thing is that Wicd does not allow you to have more then one connection active at the same time.
+*** Wireless
+Wicd rules !! Install it and be done with it.
+
+* Software
+** Skype
+*** Pulseaudio and crackling sounds
+Basaed on information from
+[[http://community.skype.com/t5/Linux/crackling-sound-in-Debian-Sid-64bit/td-p/253502]]
+
+Just edit the =/etc/pulse/default.pa= file
+
+#+BEGIN_SRC sh
+load-module module-udev-detect
+#+END_SRC
+
+becomes
+
+#+BEGIN_SRC sh
+load-module module-udev-detect tsched=0
+#+END_SRC
+
+and this will fix the problem of bad sounds with Skype.
+

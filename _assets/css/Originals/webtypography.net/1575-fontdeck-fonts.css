@@ -1,0 +1,30 @@
+
+@font-face {
+    font-family: 'Premiera Book';
+    src: url('http://f.fontdeck.com/f/1/SUVOSFdYM1YAB+w2Q531ltiYLyZ1+/6+SSGyqO1RcDn6hKlkP3tpZfxrxtgDYTPldycBtT4q/SCNpo1Z+R3+jffsVTXH/70NWMS2hEwBAAgiXQgxb9xbjC7Q.eot');
+    src: url('http://f.fontdeck.com/f/1/SUVOSFdYM1YAB+w2Q531ltiYLyZ1+/6+SSGyqO1RcDn6hKlkP3tpZfxrxtgDYTPldycBtT4q/SCNpo1Z+R3+jffsVTXH/70NWMS2hEwBAAgiXQgxb9xbjC7Q.eot?') format('embedded-opentype'),
+    url('http://f.fontdeck.com/f/1/SUVOSFdYM1YAB+w2Q531ltiYLyZ1+/6+SSGyqO1RcDn6hKlkP3tpZfxrxtgDYTPldycBtT4q/SCNpo1Z+R3+jffsVTXH/70NWMS2hEwBAAgiXQgxb9xbjC7Q.woff') format('woff'),
+    url('http://f.fontdeck.com/f/1/SUVOSFdYM1YAB+w2Q531ltiYLyZ1+/6+SSGyqO1RcDn6hKlkP3tpZfxrxtgDYTPldycBtT4q/SCNpo1Z+R3+jffsVTXH/70NWMS2hEwBAAgiXQgxb9xbjC7Q.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Premiera Bold';
+    src: url('http://f.fontdeck.com/f/1/Q2hRbjVsVUUAB/t8COBOHXwqrvGk4eEfss0kC27DeCiDLbHsEEgNgmz+YNOFwgeoXjPX67d9wQvUiZFLUPcvlfsP9fANqmZwBSELM44p3IVR6VUnwEvjogG/.eot');
+    src: url('http://f.fontdeck.com/f/1/Q2hRbjVsVUUAB/t8COBOHXwqrvGk4eEfss0kC27DeCiDLbHsEEgNgmz+YNOFwgeoXjPX67d9wQvUiZFLUPcvlfsP9fANqmZwBSELM44p3IVR6VUnwEvjogG/.eot?') format('embedded-opentype'),
+    url('http://f.fontdeck.com/f/1/Q2hRbjVsVUUAB/t8COBOHXwqrvGk4eEfss0kC27DeCiDLbHsEEgNgmz+YNOFwgeoXjPX67d9wQvUiZFLUPcvlfsP9fANqmZwBSELM44p3IVR6VUnwEvjogG/.woff') format('woff'),
+    url('http://f.fontdeck.com/f/1/Q2hRbjVsVUUAB/t8COBOHXwqrvGk4eEfss0kC27DeCiDLbHsEEgNgmz+YNOFwgeoXjPX67d9wQvUiZFLUPcvlfsP9fANqmZwBSELM44p3IVR6VUnwEvjogG/.ttf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Premiera Italic';
+    src: url('http://f.fontdeck.com/f/1/VG5JNURnMzcAB00R6P72P882/zS3t5RSVFpnqpYim4wiB7rcjrgkKoxx2VYzWSY9fZhQhMwaSmhhf7bSpSrnt9cDjaOEV9wO3flWZZP7J8fzTFO5enopnjN1.eot');
+    src: url('http://f.fontdeck.com/f/1/VG5JNURnMzcAB00R6P72P882/zS3t5RSVFpnqpYim4wiB7rcjrgkKoxx2VYzWSY9fZhQhMwaSmhhf7bSpSrnt9cDjaOEV9wO3flWZZP7J8fzTFO5enopnjN1.eot?') format('embedded-opentype'),
+    url('http://f.fontdeck.com/f/1/VG5JNURnMzcAB00R6P72P882/zS3t5RSVFpnqpYim4wiB7rcjrgkKoxx2VYzWSY9fZhQhMwaSmhhf7bSpSrnt9cDjaOEV9wO3flWZZP7J8fzTFO5enopnjN1.woff') format('woff'),
+    url('http://f.fontdeck.com/f/1/VG5JNURnMzcAB00R6P72P882/zS3t5RSVFpnqpYim4wiB7rcjrgkKoxx2VYzWSY9fZhQhMwaSmhhf7bSpSrnt9cDjaOEV9wO3flWZZP7J8fzTFO5enopnjN1.ttf') format('opentype');
+    font-weight: normal;
+    font-style: italic;
+}

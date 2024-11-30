@@ -1,0 +1,55 @@
+#+SETUPFILE: "~/org/personal-web-site/_org-setupfiles/level-1.org"
+#+STARTUP: showall
+#+HTML_LINK_UP: index.html
+#+COMMENT: C-c C-e P p
+#+TITLE: Accounting for CLI junkies
+
+* Introduction
+
+2017 is approaching and will be here before I realise it.  I have made
+several attempts over my lifetime to keep track of my money, but they
+have never been successful.  The only time I had any success was years
+ago in the mid-1990s when I was running Quicken on my PowerMac 7100/66
+running MacOS 7.5 or something like that.  Using dial-up modems, I was
+able to connect to my bank, get the information I wanted, take care of
+payments, etc.  It was fun.  That lasted for a couple of years.  No
+success after that.
+
+One of my criteria has been that the software I use should be
+open-source.  This means applications like Gnucash and Jgnash are what
+I've attempted to use.  I start for a little bit, but than the effort
+falls the wayside.  No idea why.  It just does.
+
+This time I am going to try a different approach.  I am going to start
+simple.  A plain text file is where I am going to store my data.
+That is it.  I spend plenty of time on the command line as it is.
+Even more so inside of Emacs.  [[http://www.ledger-cli.org/][Ledger]] is one of the first [[http://www.plaintextaccounting.org/][plain-text
+accounting]] programs.  There is also [[http://www.hledger.org/][hledger]], which is a version of
+ledger rewritten in [[http://www.haskell.org/][Haskell]]. 
+
+I have decided to go this route hoping that because I don't have to do
+anything else but enter data in a plain-text file, I might be able to
+make better progress.
+
+Initially I plan to just keep track of bank accounts, and than add
+credit-cards,  and than investments.  Lets see how it goes.
+
+
+* Ledger
+
+** What to install
+
+#+BEGIN_SRC sh
+
+bash$ sudo apt-get update
+bash$ sudo apt-get install ledger
+
+#+END_SRC
+
+** How do I enter data ? 
+
+** What accounts / categories are available ?
+
+*** How do I add new ones ? 
+
+** How do I import data ? 

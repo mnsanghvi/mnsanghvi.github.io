@@ -1,0 +1,55 @@
+# +SETUPFILE: "~/org/personal-web-site/_org-setupfiles/level-1.org"
+#+STARTUP: showall
+# +HTML_LINK_UP: index.html#orgheadline3
+# +HTML_LINK_HOME: ../index.html
+# +INFOJS_OPT: view:info mouse:underline toc:t
+# +INFOJS_OPT: up:index.html#orgheadline3 
+# +INFOJS_OPT: home:index.html 
+# mnsanghvi/DarkKn1ght
+# C-c C-e P p
+#+TITLE: Project Euler / Problem 0001 / Multiples of 3 and 5
+
+
+** 001. Multiples of 3 and 5
+If we list all the natural numbers below 10 that are multiples of 3 or
+5, we get 3, 5, 6 and 9. The sum of these multiples is 23.\\
+*Find the sum of all the multiples of 3 or 5 below 1000.*
+
+*** Ada
+#+INCLUDE: "~/Devel/Project_Euler/Problem_00001/problem_00001.adb" src ada
+
+*** C
+#+INCLUDE: "~/Devel/Project_Euler/Problem_00001/problem_00001.c" src C
+
+*** C++
+#+INCLUDE: "~/Devel/Project_Euler/Problem_00001/problem_00001.cpp" src cpp
+
+*** Go
+#+INCLUDE: "~/Devel/Project_Euler/Problem_00001/problem_00001.go" src go
+
+*** Java
+#+INCLUDE: "~/Devel/Project_Euler/Problem_00001/problem_00001.java" src java
+
+*** Javascript
+#+INCLUDE: "~/Devel/Project_Euler/Problem_00001/problem_00001.js" src js
+
+*** Lisp
+#+INCLUDE: "~/Devel/Project_Euler/Problem_00001/problem_00001.lisp" src lisp
+
+*** Objective-C
+#+INCLUDE: "~/Devel/Project_Euler/Problem_00001/problem_00001.m" src objc
+
+*** Perl
+#+INCLUDE: "~/Devel/Project_Euler/Problem_00001/problem_00001.pl" src perl
+
+*** Python
+#+INCLUDE: "~/Devel/Project_Euler/Problem_00001/problem_00001.py" src python
+
+*** Scheme
+#+INCLUDE: "~/Devel/Project_Euler/Problem_00001/problem_00001.scm" src scheme
+
+*** Smalltalk (GNU Smalltalk)
+#+INCLUDE: "~/Devel/Project_Euler/Problem_00001/problem_00001.st" src smalltalk
+
+*** Tcl
+#+INCLUDE: "~/Devel/Project_Euler/Problem_00001/problem_00001.tcl" src tcl

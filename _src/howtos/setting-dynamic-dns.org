@@ -1,0 +1,157 @@
+#+STARTUP: showall
+#+HTML_LINK_UP: index.html
+#+COMMENT: C-c C-e P p
+#+TITLE: Setting up Dynamic DNS
+
+
+* Introduction
+Unless you are using static IP addresses from  your DNS provider, you
+may want to use Dynamic DNS if you are using an external DNS service.
+
+** What is Dynamic DNS ?
+
+I have very rarely had to update my DNS records, except for times when
+Comcast does some updates that force the external IP address change.
+
+I have been using Google Domains ever since it first became available
+in 2014.  
+
+** tokens (this is temporarily stored here)
+
+*** sanghvi.org
+    - API: 0xS_YJjrGSYw4ckj54a3AdtjFWWI2uYBkqILaO8M
+
+*** kirsun.com
+    - API: MZtAKKuQMS-be_Y63nFV2duerPE6FMU5B4nm7gU-
+       
+*** triangle-est.com
+    - API: 5MFErmtvJ3YVyfGD3vHuLWM3AkfzkpEIvIiHgHeH
+
+** Requirements
+
+   - Check once an hour, maybe once a week
+   - Run as a cronjob using =periodic=
+
+
+** Prerequisites
+
+* Resources
+
+  - https://cipherli.st
+  - http://angelo.mandato.com/2017/03/07/lets-encrypt-ubuntu-apache-nginx-lighttpd-cheat-sheet/
+  - https://github.com/dehydrated-io/dehydrated
+  - https://github.com/dehydrated-io/dehydrated/blob/master/docs/tls-alpn.md
+  - https://github.com/dehydrated-io/dehydrated/blob/master/docs/domains_txt.md
+  - https://redmine.lighttpd.net/projects/lighttpd/wiki/HowToSimpleSSL
+
+Have to add a cron-job for root that creates the correct certificate
+files for Lighttpd.
+
+* Installation
+
+Since this is written using [[https://www.gnu.org/software/bash/][Bash]] there are minimal external dependencies
+
+#+BEGIN_SRC bash
+  tcsh% pkg search -d security/dehydrated
+  security/dehydrated
+  Comment        : Pure BASH/ZSH Lets Encrypt client
+  Depends on     :
+          bash-5.2_3
+          curl-7.85.0
+#+END_SRC
+
+
+The installation is simple enough with everything getting installed under =/usr/local=
+
+#+BEGIN_SRC bash
+  tcsh% sudo pkg install dehydrated=
+
+  tcsh% pkg list security/dehydrated=
+  /usr/local/bin/dehydrated
+  /usr/local/etc/dehydrated/config.sample
+  /usr/local/etc/dehydrated/domains.txt.sample
+  /usr/local/etc/dehydrated/hook.sh.sample
+  /usr/local/etc/periodic/weekly/000.dehydrated
+  /usr/local/man/man1/dehydrated.1.gz
+  /usr/local/share/doc/dehydrated/README.md
+  /usr/local/share/doc/dehydrated/dns-verification.md
+  /usr/local/share/doc/dehydrated/domains_txt.md
+  /usr/local/share/doc/dehydrated/ecc.md
+  /usr/local/share/doc/dehydrated/hook_chain.md
+  /usr/local/share/doc/dehydrated/per-certificate-config.md
+  /usr/local/share/doc/dehydrated/staging.md
+  /usr/local/share/doc/dehydrated/tls-alpn.md
+  /usr/local/share/doc/dehydrated/troubleshooting.md
+  /usr/local/share/doc/dehydrated/wellknown.md
+  /usr/local/share/licenses/dehydrated-0.7.0/LICENSE
+  /usr/local/share/licenses/dehydrated-0.7.0/MIT
+  /usr/local/share/licenses/dehydrated-0.7.0/catalog.mk
+                                                     
+#+END_SRC
+
+* Configuration
+
+First, lets make a copy of the sample files provided so that we have something to
+work with
+
+#+begin_src bash
+  tcsh% cd /usr/local/etc/dehydrated
+  tcsh% cp config.sample config
+  tcsh% cp domains.txt.sample domains.txt
+#+end_src
+
+** =domains.txt=
+The first thing to do is edit the =domains.txt= file so that we have the correct domains
+setup before we start experimenting with the config file and doing test runs.
+
+
+All you need is a single line in the file
+
+#+begin_example
+# Create certificate for 'example.org' with an alternative name of                                                                  
+# 'www.example.org'. It will be stored in the directory ${CERT_DIR}/example.org                                                     
+example.org www.example.org smtp.example.org mail.example.org
+#+end_example
+
+Because I wamt to use =tls-alpn-01= for certificate validation, I can not
+use a wildcard domain.
+
+You can add as many subdomains as you want, I do not believe there is a limit on that.
+
+Now that we have =domains.txt= setup, lets move on to the =config= file.
+
+** =config=
+
+Most of the defaults are pretty sane in the file.  I changed the following
+
+#+begin_example
+CA="letsencrypt-test"
+CHALLENGETYPE="tls-alpn-01"
+BASEDIR="/usr/local/etc/dehydrated"
+CERTDIR="/usr/local/etc/ssl"
+ALPNCERTDIR="/usr/local/www/tls-alpn-01"
+#+end_example
+
+Once we're done testing the configuration, the =CA= will need to be changed
+to not use the testing authority.
+
+** Directories and permissions
+The two main directories that are needed for certificates and certificate
+renewal are =/usr/local/etc/ssl= and =/usr/local/www/tls-alpn-01=.  Both of
+the directories need to similar to the following:
+
+#+begin_src bash
+  drwxr-xr-x  5 root   wheel      13 Jan  8 01:28 /usr/local/etc/ssl
+  drwxr-xr-x  2 www    www         2 Jan 21 04:23 /usr/local/www/tls-alpn-01
+#+end_src
+
+
+* Security Certificates
+
+
+* Lighttpd
+
+
+
+
+

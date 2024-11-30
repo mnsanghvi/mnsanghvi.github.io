@@ -1,0 +1,22 @@
+.org-bold { /* bold */ font-weight: bold; }
+.org-bold-italic { /* bold-italic */ font-weight: bold; font-style: italic; }
+.org-builtin { /* font-lock-builtin-face */ font-weight: bold; }
+.org-comment { /* font-lock-comment-face */ font-style: italic; }
+.org-comment-delimiter { /* font-lock-comment-delimiter-face */ font-style: italic; }
+.org-constant { /* font-lock-constant-face */  }
+.org-doc { /* font-lock-doc-face */ font-style: italic; }
+.org-function-name { /* font-lock-function-name-face */ }
+.org-italic { /* italic */ font-style: italic; }
+.org-keyword { /* font-lock-keyword-face */ font-weight: bold; }
+.org-org-footnote { /* org-footnote */ color: #a020f0; text-decoration: underline; }
+.org-org-formula { /* org-formula */ color: #b22222; }
+.org-preprocessor { /* font-lock-preprocessor-face */ }
+.org-regexp-grouping-backslash { /* font-lock-regexp-grouping-backslash */ font-weight: bold; }
+.org-regexp-grouping-construct { /* font-lock-regexp-grouping-construct */ font-weight: bold; }
+.org-string { /* font-lock-string-face */ font-style: italic; }
+.org-type { /* font-lock-type-face */ }
+.org-variable-name { /* font-lock-variable-name-face */ font-style: italic }
+.org-warning { /* font-lock-warning-face */ color: #ff0000; font-weight: bold; }
+.org-shadow { /* shadow */ color: #7f7f7f; }
+.org-trailing-whitespace { /* trailing-whitespace */ background-color: #ff0000; }
+.org-underline { /* underline */ text-decoration: underline; }

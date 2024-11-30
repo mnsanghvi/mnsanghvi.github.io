@@ -1,0 +1,47 @@
+#+SETUPFILE: "~/org/personal-web-site/_org-setupfiles/level-1.org"
+#+STARTUP: showall
+#+HTML_LINK_UP: index.html
+#+COMMENT: C-c C-e P p
+#+TITLE: Setup a web server using Lighttpd
+
+* Introduction
+
+
+* What to install
+
+#+BEGIN_SRC bash
+bash$ sudo apt-get update
+bash$ sudo apt-get install certbot openssl lighttpd
+#+END_SRC
+
+* Security Certificates
+
+Instead of using self-signed certificates, I used the certificates
+made available via the [[https://letsencrypt.org/][Let's Encrypt]] Certificate Authority.  It is an
+excellent site and getting the certificates was one of the easiest
+things I have ever done.  
+
+#+BEGIN_SRC bash
+bash$ sudo su -
+bash# for dom in sanghvi.org kirsun.com triangle-est.com
+do
+   certbot certonly --standalone -d ${dom} -d www.${dom} -d
+imap.${dom} -d smtp.${dom} -d mm.${dom}
+done
+bash# 
+#+END_SRC
+
+* Lighttpd
+
+
+
+
+
+* Resources
+
+https://cipherli.st \
+http://angelo.mandato.com/2017/03/07/lets-encrypt-ubuntu-apache-nginx-lighttpd-cheat-sheet/
+
+Have to add a cron-job for root that creates the correct certificate
+files for Lighttpd.
+

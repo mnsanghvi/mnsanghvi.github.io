@@ -1,0 +1,84 @@
+#+SETUPFILE: "~/org/personal-web-site/_org-setupfiles/level-1.org"
+#+STARTUP: showall
+#+OPTIONS: toc:nil
+#+HTML_LINK_UP: index.html
+#+COMMENT: C-c C-e P p
+#+TITLE: Re-educating Myself
+
+
+* Course Roadmap
+
+I am going to base the course work grid on what is currently
+(December 2015) being offered at the university I used to attend.
+With some modifications of course. :)   
+
+I have not included the Humanities related courses or any other
+electives.  There are also plenty of extra courses based on what I
+would have liked to take as well, sort of like my ideal curriculum. 
+
+
+| Course                    | Course Work and Text Books used                                        |
+|---------------------------+------------------------------------------------------------------------|
+| Chemistry                 | [[file:Natural-Sciences/Chemistry/general-chemistry-ebbing-2ed/index.org][General Chemsitry (Ebbing 2ed)]]                                         |
+|                           |                                                                        |
+| Physics                   | [[file:Natural-Sciences/Physics/university-physics-sears-7ed/index.org][University Physics (Sears, Zemansky, Young 7ed)]]                        |
+|                           |                                                                        |
+| Calculus                  | [[file:Natural-Sciences/Mathematics/calculus-stewart/index.org][Calculus (Stewart)]]                                                     |
+|                           |                                                                        |
+| Discrete Mathematics      | [[file:Natural-Sciences/Mathematics/applied-discrete-structures-doerr-2ed/index.org][Applied Discrete Structures for CS (Doerr 2ed)]]                         |
+|                           |                                                                        |
+| Statistics                | [[file:Natural-Sciences/Mathematics/intro-to-statistics-with-data-analysis-rasmussen/index.org][Introduction to Statistics with Data Analysis]]                          |
+|                           | [[file:Natural-Sciences/Mathematics/statistical-methods-revised-ed/index.org][Statistical Methods (Freund / Wilson revised ed.)]]                      |
+|                           |                                                                        |
+| Differential Equations    | [[file:Natural-Sciences/Mathematics/ordinary-diff-eq-rice-2ed/index.org][Ordinary Differential Equations with Applications (Rice & Strange 2ed)]] |
+|                           |                                                                        |
+| Numerical Analysis        | [[file:Natural-Sciences/Mathematics/intro-numerical-analysis-plybon/index.org][Introduction to Applied Numerical Analysis (Plybon)]]                    |
+|                           |                                                                        |
+| Circuit Analysis          | [[file:Engineering/Electrical/intro-circuit-analysis-boylestad-5ed/index.org][Introductory Circuit Analysis (Boylestad 5ed)]]                          |
+|                           |                                                                        |
+| Logic Design              | [[file:Engineering/Electrical/digital-design-practical-course-burger/index.org][Digital Design, A Practical Course]]                                     |
+|                           |                                                                        |
+| Intro to Computing        | [[file:CompSci/data-structures-kruse-2ed/index.org][Data Structures (Kruse 2ed)]]                                            |
+|                           | [[file:CompSci/software-components-with-ada-booch/index.org][Software Components with Ada (Booch)]]                                   |
+|                           | [[file:CompSci/file-structures-folk-2ed/index.org][File Structures (Folk & Zoellick 2ed)]]                                  |
+|                           | [[file:CompSci/sicp-1ed/index.org][Structure and Interpretation of Computer Programs (1st edition)]]        |
+|                           | [[file:CompSci/htdp-1ed/index.org][How To Design Programs (1st edition)]]                                   |
+|                           |                                                                        |
+| Algorithms                | [[file:CompSci/algorithms-in-c++-sedgewick/index.org][Algorithms in C++]]                                                      |
+|                           |                                                                        |
+| Computer Architecture     | [[file:CompSci/comp-prog-and-arch-the-vax-levy-2ed/index.org][Computer Programming and Architecture: The VAX (Levy & Eckhouse 2ed)]]   |
+|                           |                                                                        |
+| Networking                | [[file:CompSci/unix-network-programming-stevens-1ed/index.org][UNIX Network Programming (Stevens 1ed)]]                                 |
+|                           |                                                                        |
+| Organisation of Prog Lang | [[file:CompSci/priciples-of-programming-languages-maclennan-2ed/index.org][Principles of Programming Languages (MacLennan 2ed)]]                    |
+|                           | [[file:CompSci/plai-2ed/index.org][Programming Languages: Application and Interpretation]]                  |
+|                           | [[file:CompSci/essentials-of-programming-languages-friedman-3ed/index.org][Essentials of Programming Languages (Friedman & Wand 3ed)]]              |
+|                           |                                                                        |
+| Compiler Writing          | [[file:CompSci/compilers-dragon-book/index.org][Compilers aka Dragon Book (Aho, Sethi, Ullman)]]                         |
+|                           |                                                                        |
+
+
+
+
+* Extra Courses
+
+ These are courses that I would have liked to take as well, but would
+ never have had time to take because of the actual course roadmap
+ given above.  For some of them I did procure the text books in order
+ to do things on my own time.
+
+ | Course                 | Course work and text books used                                 |
+ |------------------------+-----------------------------------------------------------------|
+ | Algebra                | [[file:Natural-Sciences/Mathematics/elementry-algebra-for-college-drooyan-7ed/index.org][Elementry Algebra for College Students (Drooyan & Franklin 7ed)]] |
+ | Mathematical Thinking  | [[file:Natural-Sciences/Mathematics/mathematical-thinking/index.org][Intro to Mathematical Thinking]]                                  |
+ | Intro to Logic         | [[file:Natural-Sciences/Mathematics/intro-to-logic/index.org][Intro to Logic]]                                                  |
+ | Software Engineering   | [[file:CompSci/software-engineering-sommerville-3ed/index.org][Software Engineering (Somerville 3ed)]]                           |
+ |                        | [[file:CompSci/object-oriented-software-construction-meyer-2ed/index.org][Object-Oriented Software Construction (Meyer 2ed)]]               |
+ |                        |                                                                 |
+ | Databases              | [[file:CompSci/database-systems-rob-7ed][Database Systems: Design, Implementation, and Management]]        |
+ | Machine Learning       |                                                                 |
+ | Data Mining            |                                                                 |
+ | Big Data System Design |                                                                 |
+ | Artifical Intelligence |                                                                 |
+ |                        |                                                                 |
+ 

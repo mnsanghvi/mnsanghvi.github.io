@@ -1,0 +1,18 @@
+.code {
+    background: #1b1d1e
+}
+
+.code .c, .code .c1, .code .cm, .code .cp {
+    color: #75715e;
+    font-style: italic
+}
+
+.code .gp { color: #75715e }
+.code .p { color: #f8f8f2 }
+.code .o { color: #f92672 }
+.code .ss, .code .si { color: #fd971f }
+.code .s, .code .sc, .code .s2 { color: #e6db74 }
+.code .na, .code .nb, .code .nc, .code .nd, .code .ne, .code .nf { color: #a6e22e }
+.code .k, .code .kp, .code .kn, .code .no { color: #66d9ef }
+.code .l, .code .ld, .code .mi { color: #ae81ff }
+

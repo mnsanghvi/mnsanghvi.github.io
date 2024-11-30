@@ -1,0 +1,359 @@
+#+SETUPFILE: "~/org/personal-web-site/_org-setupfiles/level-0.org"
+#+STARTUP: showall
+#+HTML_LINK_UP: index.html
+#+COMMENT: C-c C-e P p
+#+TITLE: My Emacsen Life
+
+* Introduction
+It was 1989 when I got introduced to /EVE/ on the /VMS OS/. Coming from
+/MS-DOS/ and using /edit/, I thought I was in heaven! Although it didn't
+have syntax highlighting and the ability to compile my C programs
+directly from within the editor (at least not to my knowledge anyway),
+like /Turbo C/ and /Turbo Pascal/, I still preferred /EVE/. In Fall 1990 I
+got introduced to /Unix/, /Ultrix32/ and /SunOS 4/ to be specific, and along
+with that Emacs. Emacs 18.55 or was it 18.57. It was like EVE but
+better. I could make it do almost anythying. I was using it for
+*reading news* (/GNUS/), *email* (/VM/), *programming* (/make, C, C++, Scheme, Lisp/),
+and *source control* (/RCS, CVS/). I could *edit multiple files*,
+switch back and forth between the various files I was working on, cut
+and paste between them and had a *real* programming language, /elisp/, for
+modifying Emacs in any way I wanted to.
+
+Over the years I've added *publishing*, *music playing*, *IRC* to the list of
+things I use Emacs for. 
+
+With the advent of /GNOME/ and /KDE/ I have tried some of the IDE/text
+editors that are available on those platforms. I have tried a few
+Java IDEs like /Netbeans/ and /Eclipse/ but none of them are as
+comfortable to use or offer as rich an environment to be in as Emacs
+does. FSF/GNU Emacs is my preferred Emacsen. It is the one I started
+with and it is the one that I feel most comfortable with.  The muscle
+memory is strong after all these years!
+
+The objective of this page is to make note of various activities that I
+use Emacs for on a day-to-day basis. In fact, this page was originally
+created using Emacs and its MediaWiki support. Yes that is correct, 
+this page was never edited in the browser, but inside of Emacs !
+
+
+* Working with files and buffers
+** Editing
+*** How do I open and edit a file ?
+
+=C-x C-f= opens a file and you can immediatley start to edit it.
+
+*** How do I edit files that are owned by root ?
+
+=C-x C-f /sudo:root@localhost:/etc/hosts=
+
+or
+
+=C-x C-f /sudo::/etc/hosts=
+
+*** How do I edit files on remote systems ?
+In your =~/.emacs=
+
+#+BEGIN_SRC emacs-lisp
+(setq tramp-default-method "ssh")
+#+END_SRC
+
+
+=C-x C-f /remotehost:filename RET= or =/method:user@remotehost:filename=
+
+*** How do I edit files owned by root on remote systems ? 
+
+=C-x C-f /ssh:user@remote.host|sudo:remote.host:/path/to/file=
+
+or
+
+=C-x C-f  /ssh:REMOTE_HOST|sudo::/path/to/file=
+
+
+** Search and Replace
+*** How do I search and replace text in multiple files ?
+
+I wanted to replace 3 lines of code
+
+#+BEGIN_SRC sh
+set JAVA_HOME=D:\simpk\demo3\jdk
+set ANT_HOME=D:\simpk\demo3\ant
+set PATH=%JAVA_HOME%\bin;%ANT_HOME%\bin;%PATH%
+#+END_SRC
+
+with the following
+
+#+BEGIN_SRC sh
+REM ## pull in the common environment variables
+call Common-Settings.bat
+#+END_SRC
+
+in all the /*.cmd/ files located in
+=~/Work/src/Scripts=
+
+=C-x C-f ~/Work/src/Scripts=
+This will open up Scripts directory in /dired-mode/. Now mark the
+files you want to work on with =m= and then =Q= to "Query replace in files".
+
+#+BEGIN_SRC elisp
+^set.* C-q C-j set.* C-q C-j set.* RET
+REM ## pull in the common environment variables C-q C-j call Common-Settings.bat RET
+#+END_SRC
+
+*** How do I search, replace and increment at the same time ?
+I have a file with 1100 lines of the following format:
+
+#+BEGIN_SRC csv
+Patients/Random.csv,Stories/simpk-heavy-hh-sync-vcu.csv,
+#+END_SRC
+
+and want to replace it with lines like:
+
+#+BEGIN_SRC csv
+Patients/TestPatient1.csv,Stories/simpk-heavy-hh-sync-vcu.csv,
+Patients/TestPatient2.csv,Stories/simpk-heavy-hh-sync-vcu.csv,
+#+END_SRC
+
+This can be done using the follwing:
+
+=M-x replace-regexp RET Random.csv RET TestPatient\,(+ 1 #).csv RET=
+
+The =\,= allows you to put a Lisp expression there and the =#= is
+the /replace-count/.  Read /*replace-regexp*/ for more information.
+
+** Dired
+*** How to check out files from within dired ?
+*** How to check in a source file from within dired?
+*** How to select and checkin multiple files in dired ?
+
+** IBuffer
+
+* Personal Digital Assistant
+** Org-mode
+** Calendar
+*** How do I import an ICS calendar file ?
+
+=M-x icalendar-import-file RET /path/to/calendar.ics=
+
+** Diary
+
+* Publishing
+** AUCTeX
+** Org-mode
+Using Org-mode with Beamer you can create PDF slides for doing
+presentations.  You can modify and update the PDF file on the fly while
+viewing it or in the middle of a presentation.  It is a great feature.
+
+| Key chord | Description                                   |
+|-----------+-----------------------------------------------|
+| C-c C-e p | publish and create the PDF file               |
+| C-c C-e d | update the PDF on the fly after editing it    |
+
+
+** Confluence
+I use /confluence-el/ for editing from Emacs.
+
+*** Basic usage and setup
+Add the following to =~/.emacs=
+
+#+BEGIN_SRC emacs-lisp
+(require 'confluence)
+  (confluence-url "https://confluence.ne.virtmed.com/rpc/xmlrpc")
+  (global-set-key (kbd "C-x c g") 'confluence-get-page)
+#+END_SRC
+
+/confluence-mode/ does not have any default keybindings of its own, so
+I am using the =C-x c= key map for it. =c= for confluence, duh! 
+
+** Mediawiki
+I use /mediawiki-mode/ to interact with MediaWiki web sites like Wikipedia.org
+
+*** Setup
+Download /mediawiki.el/ and save it in =~/.emacs.d/= or some directory which is in your load-path
+
+Edit =~/.emacs= and add the following:
+
+#+BEGIN_SRC emacs-lisp
+(load-library "mediawiki")
+#+END_SRC
+
+which will ensure that /mediawiki.el/ gets loaded each time you start
+up Emacs.
+
+You can also do the following in an already started Emacs session:
+
+=M-x load-library RET mediawiki RET=.  
+
+Set up the information for any sites that you want to work with.  If
+you do not wish to store your password, you can leave it blank and you
+will be prompted. 
+
+=M-x customize-variable RET mediawiki-site-alist RET=
+
+*** Usage
+To edit the site:
+
+=M-x mediawiki-site RET <your site name> RET=
+
+You should now be editting the default page. If you did not specify one, you are now logged in.
+
+Example:
+
+=M-x mediawiki-open RET Main Page RET=
+
+will now have opened up and put "Main Page" in your editing buffer.
+
+*** Keybindings
+
+| Key chord | Description                           |
+|-----------+---------------------------------------|
+| C-x C-s   | save this page                        |
+| C-c C-c   | save this page and bury the buffer    |
+| C-return  | open the page under point for editing |
+| TAB       | go to the next wiki link              |
+| M-n       | next page in the page ring            |
+| M-p       | previous page in the page ring        |
+| M-g       | reload the current page               |
+
+
+
+* Software Development
+
+** Code Style
+*** Tabs vs. Space
+Lets say you have a policy at work for indentation of 4 spaces so here
+are the things that you need to do.  WARNING: Absolutely NO TABS!!
+
+#+BEGIN_SRC emacs-lisp
+;; indentation will insert tabs if non-nil.
+;; so if you want spaces, keep this nil, as you should have done
+;; by default anyway.  TABS ARE EVIL !!
+(setq indent-tabs-mode nil)
+
+;; most programming modes that are derived from CC-Mode use this
+;; to control the indentation setting. C/C++/ObjC/Java
+(setq c-basic-offset 4)
+(setq c-tab-always-indent t)
+
+;; if you want the braces to NOT be on the same line, you want to
+;; set the below to non-nil
+(setq c-auto-newline t)
+
+;; number of columns to indent 2nd line of (defun ...)
+(setq lisp-body-indent 4)
+
+;; indent 2nd line of expression this many columns more
+(setq lisp-indent-offset 4)
+
+;; basic indentation level to be used by sgml-indent-line
+(setq sgml-basic-offset 4)
+
+;; if indent-tabs-mode is non-nil this determines
+;; how far apart the tab stops are.
+(setq tab-width 4)
+
+;; indentation level of statements with respect to containing block
+(setq tcl-indent-level 4)
+#+END_SRC
+
+*** Naming style
+Personally I don't like =camelCaseVariables=, I prefer GNU/Linux style
+of using =very_long_variable_name= style. You can toggle
+=subword-mode= using =C-c C-w= to swich between the two conventions.
+
+** Jira
+=jira-mode= allows you to interact with Jira from Emacs. It uses the
+XML-RPC interface to Jira for communication between Emacs and Jira.
+Unfortunately it doesn't seem to work too well at the moment.
+
+*** Configuration and setup
+Jira mode depends on =xml-rpc.el= which can be downloaded using Bazaar:
+
+#+BEGIN_SRC sh
+cd ~/.emacs.d
+bzr checkout http://bzr.savannah.gnu.org/r/emacsweblogs
+#+END_SRC
+
+and then do one of either:
+
+#+BEGIN_SRC sh
+ln -s emacsweblogs/lisp/xml-rpc.el ~/.emacs.d/xml-rpc.el
+#+END_SRC
+
+OR
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'load-path "~/.emacs.d/emacsweblogs/lisp")
+#+END_SRC
+
+Download =jira.el= and place it in =~/.emacs.d=.
+Before you start you will need to configure =jira-mode=
+
+=M-x customize-variable RET jira-url RET http://jira.fubar.com/rpc/xmlrpc=
+
+*** How do I create tickets in Jira ?
+*** How to comment on tickets ?
+*** How do I assign tickets ?
+*** How do I list projects and issues ?
+*** How do I search projects and issues ?
+
+* Debugging
+** edebug
+** GUD
+** GDB
+* Source Control
+** VC
+** CVS
+** Git
+*** Magit
+** Subversion
+* Programming Languages
+** Ada
+** C/C++/ObjC
+The default =cc-mode= that comes with Emacs itself is the best option for this.
+** Fortran
+*** fortran-mode (fixed format)
+*** f90-mode (free format)
+** Java
+*** CC Mode
+This comes with Emacs and is the default.
+*** JDEE
+JDEE is the most well known package for Java development
+*** Malabar
+** JavaScript
+*** Which JavaScript mode to use ?
+The best one out there is =js2-mode=. Follow the link and the instructions for dowloading and installing it.
+It seems that =espresso= (aka js-mode) and =js2-mode= may be getting
+merged. We'll see with Emacs 23.2 when it gets released. One problem
+is indentation, which neither =js2-mode= nor =espresso= mode handle very
+well.
+** Lisp/Elisp
+*** SLIME
+** Perl
+** Prolog
+** Scheme
+*** Quack
+**** Configuration
+***** 
+** Smalltalk
+** Tcl
+** SQL
+*** sql-mode
+*** sql-interactive-mode
+*** sqlplus.el
+Download from http://www.emacswiki.org/emacs/SqlPlus
+
+#+BEGIN_SRC emacs-lisp
+(require 'sqlplus)
+#+END_SRC
+*** How to connect to Oracle server ? 
+=M-x sqlplus username/password@//host.name.tld:port/SID=
+
+*** Keybindings
+| Key chord | Description                     | Function               |
+|-----------+---------------------------------+------------------------|
+| C-c C-e   | will run the command you're on  | (sqlplus-send-current) |
+| C-c C-r   | will run the highlighted region | (sqlplus-send-region)  |
+
+
+** XML
+

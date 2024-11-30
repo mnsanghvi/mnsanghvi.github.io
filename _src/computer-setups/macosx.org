@@ -1,0 +1,50 @@
+#+SETUPFILE: "~/org/personal-web-site/_org-setupfiles/level-1.org"
+#+STARTUP: showall
+#+HTML_LINK_UP: index.html
+#+HTML_LINK_HOME: ../index.html
+#+COMMENT: C-c C-e P p
+#+TITLE: My Mac OSX Setup
+#+SUBTITLE: Inside the reality distortion field
+
+#+BEGIN_abstract
+These are my notes on the setup of my MacBook Pro Retina 13" (2013).  When I
+was initially given the latop, it was running Yosemite (OSX 10.10.5).
+There have been many changes I've made to it, hopefully I've managed
+to remember them
+#+END_abstract
+
+#+TOC: headlines 2
+
+* Screenhots
+| Functionality                           | key chord      |
+|-----------------------------------------+----------------|
+| Take screenshot of entire screen        | Cmd-Shft-3     |
+| Take screenshot of selected screen area | Cmd-Shft-4     |
+| Copy full-screen screenshot             | Cmd-Ctl-Shft-3 |
+| Copy screenshot of selected area        | Cmd-Ctl-Shft-4 |
+|                                         |                |
+
+** Changing default filename
+
+* System Preferences
+
+** Switch CapsLock and Control
+Apple Menu -> System Preferences -> Keyboard -> Modifier Keys...
+
+Select the keyboard from the pull down menu.  Swap the Caps Lock and Control settings.
+
+
+* Software
+
+** Xcode
+This should be the first piece of software installed as it is needed,
+whether I use it or not.  Without Xcode and the Xcode command line
+tools, MacPorts can not be used.  Xcode will need to be installed from
+the Apple App Store.  Once it is installed you will need to do
+=xcode-select --install= in order to get the command-line tools
+installed. 
+
+** MacPorts
+I use [[http://www.macports.org/][MacPorts]] to get third-party open-source software.  There are
+other systems out there like Home Brew and Fink, but I like the
+similarity MacPorts has with BSD Ports systems.

@@ -1,0 +1,43 @@
+/*********************************************
+ *            FOOTER
+ ********************************************/
+    #postamble {
+        color: #dedede; 
+        font-size: 60%;
+        line-height: 30%;
+        border-top: solid #555555 1px;
+            padding: 0.2em;
+    }
+
+    @media handheld {
+        #postamble {
+            font-size: 30%;
+        }
+        
+    }
+    /* Highlight all links in the postamble 
+       whether they are visited or not. */
+    #postamble :link {
+        color: #000000;
+    }
+
+    #postamble :visited { 
+        color: #cccccc; 
+        background: transparent;
+    }
+
+    /****************
+      If you use :hover only, it will highlight
+      the whole line, link and all included.
+      So we have to be explicit what in the
+      postamble we want to highlight when hovering.
+    ****************/
+    #postamble a[href]:hover {
+        background-color: #e9f6c2;
+        border-radius: 5px;
+            z-index: -1000;
+            box-shadow: 0 0 0.2em #777777;
+            -webkit-box-shadow: 0 0 0.2em #777777;
+            -moz-box-shadow: 0 0 0.2em #777777;
+    }
+

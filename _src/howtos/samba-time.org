@@ -1,0 +1,33 @@
+#+SETUPFILE: "~/org/personal-web-site/_org-setupfiles/level-1.org"
+#+STARTUP: showall
+#+HTML_LINK_UP: index.html
+#+COMMENT: C-c C-e P p
+#+TITLE: Samba Time!!
+
+* What to install
+
+#+BEGIN_SRC sh
+bash$ sudo apt-get update
+bash$ sudo apt-get install samba
+#+END_SRC
+
+* Starting and stopping Samba
+
+#+BEGIN_SRC sh
+shell$ sudo systemctl stop smbd.service
+shell$ sudo systemctl stop nmbd.serviec
+
+shell$ sudo systemctl start smbd.service
+shell$ sudo systemctl start nmbd.service
+#+END_SRC
+
+#+COMENT: * Config file
+
+#+COMMENT: This is the config file I use for Samba.
+
+#+COMMENT: #+INCLUDE: "/etc/samba/smb.conf" src sh
+
+
+
+
+

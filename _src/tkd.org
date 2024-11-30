@@ -1,0 +1,26 @@
+#+HTML_LINK_UP: index.html
+#+COMMENT: C-c C-e P p
+#+TITLE: Tae Kwan Do
+
+* Numbers             :drill:
+SCHEDULED: <2016-04-12 Tue>
+:PROPERTIES:
+:DRILL_CARD_TYPE:  twosided
+:ID:       fa35c347-f500-438c-9057-74115e52d009
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2016-04-08 Fri 14:50]
+:END:
+
+Count the numbers.
+
+** Korean
+Hanna
+
+** English
+One

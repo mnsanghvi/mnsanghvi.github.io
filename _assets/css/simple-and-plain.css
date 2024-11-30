@@ -1,0 +1,261 @@
+/* simple-and-plain.css -- A very simple and plain CSS
+ *
+ * The idea is to keep this relatively plain looking.  The CSS might get
+ * complicated, so this can't truly be "simple" ;-) so it is a best effort
+ * situation.
+ *
+ * Use the defaults from the browser as much as possible.
+ */
+
+/*=========
+ * Learn about CSS combinators to userstand the heirarchy and how
+ * and when to use them
+ *=========*/
+
+
+/*===== RESET =====*/
+/* @import url("https://www.gnu.org/reset.css"); */
+@import url("https://necolas.github.io/normalize.css/latest/normalize.css");
+
+
+/*===== FONTS =====*/
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Fira+Mono:wght@400;500;700&family=Fira+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+
+/*=================================================================================
+  Based on article at 
+    https://medium.com/designing-medium/system-shock-6b1dc6d6596f#.r4jbs5mfq
+    https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/
+===================================================================================*/
+ 
+html, body, h1, h2, h3, h4, h5, h6, legend {
+    font-family: "Fira Sans", "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+code, pre, pre.src {
+    font-family: "Fira Code", "IBM Plex Mono", "Fira Mono", "Menlo", "Monaco", "Consolas", "Lucida Console", "Courier New", monospace;
+}
+
+
+/*===== START VARIABLE SETUP =====*/
+:root {
+    /* main html and body */
+    --main-bg-colour: white;
+    --main-text-colour: black;
+    --shadow-colour: gainsboro;
+    --border-colour: lightgrey;
+
+    /* pre/post-amble */
+    --pre-amble-text: dimgrey;
+    --post-amble-text: dimgrey;
+
+    /* tables */
+}
+
+/*===== END VARIABLE SETUP =====*/
+
+
+/** NOTE: All font-size should be relative to html.font-size **/
+/* html applies to the whole page, so that's first */
+html {
+    margin: 0 15% 0 15%;
+    font-size: 20px;
+    line-height: 140%;
+    background-color: var(--main-bg-colour);
+}
+
+body {
+    margin: 0 auto;
+    text-rendering: optimizeLegibility;
+}
+
+
+#org-div-home-and-up {
+    font-size: 70%;
+    text-align: right;
+    white-space: nowrap;
+    padding: 0 1em 0 0;
+}
+
+.title {
+    margin-bottom: 0;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    text-align: center;
+    color: var(--main-text-colour);
+}
+
+.subtitle {
+    margin-top: 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+#content {
+    min-height: 100%;
+    margin: 0 auto;
+    padding: 1em;
+}
+
+pre {
+    line-height: 110%;
+    overflow: auto;
+    padding: 8pt;
+}
+
+code {
+    overflow: auto;
+    padding: 0px;
+    border-radius: 4px;
+}
+
+p > pre, p > pre.src {
+    padding: 2px 4px;
+}
+
+p code {
+    background-color: var(--shadow-colour); 
+}
+
+pre.src, pre.example {
+    border-color: var(--main-text-colour);
+    border-style: solid ;
+    border-width:  1px;
+    box-shadow: 3px 3px 3px var(--shadow-colour);
+    position: relative;
+    border-radius: 10px;
+    margin: 1.2em;
+    overflow: auto;
+}
+
+pre.example {
+    background-color: transparent;
+}
+
+
+p {
+    line-height: 1.2em;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0
+}
+
+blockquote {
+    margin: 1em 2em;
+    padding-left: 1em;
+    border-left: 3px solid #ccc
+}
+
+
+/*===== Preamble =====*/
+#preamble {
+    border-bottom: solid var(--border-colour) 1px;
+    font-size: 80%;
+    color: var(--pre-amble-text);
+    /* padding: 1em; */
+    /* margin-bottom: 2em; */
+}
+
+/*===== Postamble =====*/
+#postamble {
+    border-top: solid var(--border-colour) 1px;
+    font-size: 80%;
+    color: var(--post-amble-text);
+    /* padding: 1em; */
+    /* margin-bottom: 2em; */
+}
+
+#postamble a {
+    text-decoration: underline;
+}
+
+#postamble a:hover {
+    font-weight: bold;
+}
+
+#postamble a:visited {
+    text-decoration: underline;
+}
+
+.author { float: left; }
+
+.license { float: right; }
+
+.date-generated { float: left; }
+
+.creator { float: right; }
+
+.date-modified { float: left; }
+
+.validation { float: right; }
+
+
+/*===== Tables =====*/
+table {
+    border-bottom: 2px solid;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-top: 2px solid;
+    font-size: 85%;
+    margin: auto;
+}
+
+thead {
+    border-bottom: 2px solid;
+}
+
+table td + td, table th + th {
+    border-left: 1px solid #808080;
+}
+
+table tr {
+    border-top: 1px solid #eaeaea;
+}
+
+td, th {
+    padding: .2em .4em;
+}
+
+table caption {
+    color: var(--main-text-colour);
+    font-style: italic ;
+    padding: 1em 0;
+}
+
+
+/*===== Syntax Highlighting =====*/
+/* font-lock colours were taken from https://github.com/cryon/almost-mono-themes
+ *  and enhanced by colours from https://doc.swift.org/
+ */
+.org-bold { /* bold */ font-weight: bold; }
+.org-bold-italic { /* bold-italic */ font-weight: bold; font-style: italic; }
+.org-italic { /* italic */ font-style: italic; }
+.org-org-footnote { /* org-footnote */ color: #a020f0; text-decoration: underline; }
+.org-org-formula { /* org-formula */ color: #b22222; }
+.org-shadow { /* shadow */ color: #7f7f7f; }
+.org-trailing-whitespace { /* trailing-whitespace */ background-color: #ff0000; }
+.org-underline { /* underline */ text-decoration: underline; }
+
+/** font-lock **/
+.org-builtin { /* font-lock-builtin-face */ font-weight: bold; }
+.org-comment { /* font-lock-comment-face */ font-style: italic; color: #888888;}
+.org-comment-delimiter { /* font-lock-comment-delimiter-face */ font-style: italic; color: #888888; }
+.org-constant { /* font-lock-constant-face */ font-weight: bold; font-style: italic; }
+.org-doc { /* font-lock-doc-face */ font-style: italic; color: #506375; }
+.org-function-name { /* font-lock-function-name-face */ font-weight: bold; }
+.org-keyword { /* font-lock-keyword-face */ font-weight: bold; }
+.org-preprocessor { /* font-lock-preprocessor-face */ font-style: italic }
+.org-regexp-grouping-backslash { /* font-lock-regexp-grouping-backslash */ color: #fda50f }
+.org-regexp-grouping-construct { /* font-lock-regexp-grouping-construct */ color: #00ff00 }
+.org-string { /* font-lock-string-face */ color: #3c5e2b; }
+.org-type { /* font-lock-type-face */ font-style: italic; }
+.org-variable-name { /* font-lock-variable-name-face */ color: #000000; }
+.org-warning { /* font-lock-warning-face */ color: #ff0000; text-decoration: underline; }
+
+
+/*===== END OF FILE =====*/

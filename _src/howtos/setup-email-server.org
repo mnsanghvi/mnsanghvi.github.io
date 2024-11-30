@@ -1,0 +1,90 @@
+#+SETUPFILE: "~/org/personal-web-site/_org-setupfiles/level-1.org"
+#+STARTUP: showall
+#+HTML_LINK_UP: index.html
+#+COMMENT: C-c C-e P p
+#+TITLE: Basic email services with Postfix and Dovecot
+
+* Introduction
+
+I have been running my own email server for over 20+ years now.
+Initially I used to run it using [[https://www.sendmail.org/][Sendmail]], the de-facto standard email
+system (at that time) on Unix systems.  I was used to Sendmail due to
+my background as a systems administrator back in those days.
+
+My email system ran on a PowerMac 7100/66 which ran at a whopping
+66MHz CPU clock speed !!!  Blazing fast, and that system lasted until
+about 2003-2004 !!  I initially ran it on [[https://en.wikipedia.org/wiki/MkLinux][MkLinuk]], before switching to
+[[http://www.fixstars.com/en/technologies/linux/][Yellow Dog Linux]], and than switching to [[https://www.debian.org/][Debian]]. 
+
+Sendmail had security issues, was a resource hog, setting up your
+=sendmail.cf= file was complicated and painful, and you could not get
+anything reasonable done without using [[http://shop.oreilly.com/product/9781565928398.do][the bat book]].  The first
+edition of the book, which I still have, was 800+ pages if memory
+serves me correctly.
+
+[[https://www.postfix.org/][Postfix]] had less security issues since it was designed with security
+in mind, was less resource intensive (and that helped a lot on my
+low-end system), and was easy to configure (seeing that its
+configuration language was human readable).  I made the switch and
+have never looked back.
+
+#+BEGIN_SRC dot :file email_flow.svg :cmdline -Tsvg
+  digraph email_flow {
+
+     email [shape=note, label="incoming email"]
+
+     subgraph mail_server {
+       label="Mail Server"
+       subgraph postfix {
+         label="Postfix"
+         color="blue"
+         smtp [label="smtp:25"]
+         smtps [label="smtps:465"]
+         submission [label="submission:587"]
+         lmtp [label="lmtp:unix"]
+         subgraph spam_checks {
+           label="Spam Checks"
+           smtpd_helo_required
+           strict_rfc821_envelopes
+           disable_vrfy_command
+         }
+       }
+       subgraph dovecot {
+          label="Dovecot"
+          color="orange"
+       }
+
+       postgrey -> {smtp smtps}
+       {smtp smtps} -> smtpd_helo_required
+       smtpd_helo_required -> strict_rfc821_envelopes
+       strict_rfc821_envelopes -> disable_vrfy_command
+       disable_vrfy_command -> lmtp
+       lmtp -> dovecot
+     }
+
+     email -> postgrey
+
+  }
+
+#+END_SRC
+
+#+RESULTS:
+[[file:email_flow.svg]]
+
+
+* What to install
+
+#+BEGIN_SRC sh
+
+bash$ sudo apt-get update
+bash$ sudo apt-get install certbot dovecot-imapd postfix postfix-pcre postfix-policyd-spf-python postgrey
+
+#+END_SRC
+
+
+* Security Certificates
+
+* Postfix
+
+* Dovecot
+

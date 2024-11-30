@@ -1,0 +1,22 @@
+#+COMMENT: The idea is to keep this as minimalistic as possible.
+#+COMMENT: Most project related settings can go in the project-alist
+#+COMMENT: 
+#+COMMENT: http://orgmode.org/manual/Export-settings.html#Export-settings
+#+COMMENT: http://orgmode.org/manual/Publishing-options.html#index-org_002dhtml_002dpostamble-1883
+
+#+COMMENT: We always include this as the basic foundation off which to build the CSS
+# #+HTML_HEAD: <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css" />
+
+# Plain and simple
+#+HTML_HEAD: <link rel="stylesheet" href="../../../../css/simple-and-plain.css" />
+
+#+COMMENT: Basic style
+# #+HTML_HEAD: <link rel="stylesheet" href="../../../../../css/org-sanghvi-mehul-fonts.css" />
+# #+HTML_HEAD: <link rel="stylesheet" href="../../../../../css/org-sanghvi-mehul-htmlize.css" />
+
+#+COMMENT: default style
+#+HTML_HEAD: <link rel="stylesheet" href="../../../../../css/org-sanghvi-mehul-style.css" />
+#+COMMENT: HTML_HEAD: <link rel="stylesheet" type="text/css" href="../../../../css/org-sanghvi-mehul.css" />
+
+#+COMMENT: fnal.gov notebook.css
+#+COMMENT: HTML_HEAD: <link rel="stylesheet" href="../../../../../css/gov-fnal-notebook.css" />

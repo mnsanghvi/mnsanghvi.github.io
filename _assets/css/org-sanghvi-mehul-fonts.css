@@ -1,0 +1,18 @@
+
+/*=================================================================================
+
+    Based on article at 
+
+      https://medium.com/designing-medium/system-shock-6b1dc6d6596f#.r4jbs5mfq
+
+  =================================================================================*/
+ 
+html, body, h1, h2, h3, h4, h5, h6, legend {
+        font-family: ".SFNSText-Regular", "San Francisco", "Oxygen", "Ubuntu", "Roboto", "Segoe UI", "Cantarell",  "Droid Serif", "Cambria", "DejaVu Serif", "Helvetica Neue", "Lato", "proxima-nova", "Helvetica Neue", "Roboto Slab", "ff-tisa-web-pro", "Georgia", "Arial", sans-serif;
+
+    }
+
+code, pre, pre.src {
+        font-family: "Consolas", "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "Inconsolata LGC", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Monaco", "Courier New", "Courier", monospace;
+    }
+

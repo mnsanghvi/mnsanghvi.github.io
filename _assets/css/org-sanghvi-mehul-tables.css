@@ -1,0 +1,45 @@
+/******* 
+ * Tables
+ * from view-source:http://www.pirilampo.org/styles/readtheorg/css/readtheorg.css 
+ *******/
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #e1e4e5;
+    overflow: auto;
+}
+
+td {
+    vertical-align: top;
+}
+
+table td, table th {
+    font-size: 90%;
+    margin: 0;
+    padding: 8px 16px;
+    background-color: #ffffff;
+    border: 1px solid #e1e4e5;
+}
+
+table thead th {
+    font-weight: bold;
+    border-top: 3px solid #e1e4e5;
+    border-bottom: 1px solid #e1e4e5;
+}
+
+table caption {
+    color: #000000;
+    font: italic 85%/1 arial,sans-serif;
+    padding: 1em 0;
+}
+
+table tr:nth-child(2n-1) td {
+    background-color: #f3f6f6;
+}
+
+table tr:nth-child(2n) td {
+    background-color: #ffffff;
+}

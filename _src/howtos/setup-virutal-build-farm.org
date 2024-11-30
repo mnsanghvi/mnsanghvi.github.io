@@ -1,0 +1,33 @@
+#+SETUPFILE: "~/org/personal-web-site/_org-setupfiles/level-1.org"
+#+STARTUP: showall
+#+HTML_LINK_UP: index.html
+#+COMMENT: C-c C-e P p
+#+TITLE: Setup a Virtual Build Farm
+
+* Quick notes
+The VDC/VBF should contain the following discrete items
+- build controller (jenkins)
+- build agents (jenkins)
+  - Linux (amd64)
+    - Alpine
+    - Centos
+    - Debian
+  - NetBSD
+    - vax
+    - alpha
+    - mips64
+    - sparc64
+  - FreeBSD (amd64)
+- SCM repository (git/mercurial/cvs/svn/fossil)
+- Artefact repository (archiva(?)/nexus OSS)
+- security scanning
+  - SAST
+  - SBOMs
+  - what else?
+- FreeBSD Jails based
+  - a LDC comprises of multiple jails
+  - all jails in a LDC are on same bridge
+  - a LDC for
+    - building
+    - deployment
+- 

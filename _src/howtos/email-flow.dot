@@ -1,0 +1,36 @@
+  digraph email_flow {
+
+     email [shape=note, label="testing incoming email"]
+
+     subgraph mail_server {
+       label="Mail Server"
+       subgraph postfix {
+         label="Postfix"
+         color="blue"
+         smtp [label="smtp:25"]
+         smtps [label="smtps:465"]
+         submission [label="submission:587"]
+         lmtp [label="lmtp:unix"]
+         subgraph spam_checks {
+           label="Spam Checks"
+           smtpd_helo_required
+           strict_rfc821_envelopes
+           disable_vrfy_command
+         }
+       }
+       subgraph dovecot {
+          label="Dovecot"
+          color="orange"
+       }
+
+       postgrey -> {smtp smtps}
+       {smtp smtps} -> smtpd_helo_required
+       smtpd_helo_required -> strict_rfc821_envelopes
+       strict_rfc821_envelopes -> disable_vrfy_command
+       disable_vrfy_command -> lmtp
+       lmtp -> dovecot
+     }
+
+     email -> postgrey
+
+  }
