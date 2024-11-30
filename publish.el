@@ -43,7 +43,7 @@
 (setq org-publish-project-alist
       (list
        (list "site-org"
-             :base-directory "."
+             :base-directory "./_src"
              :base-extension "org"
              :recursive t
              :publishing-function '(org-html-publish-to-html)
@@ -56,13 +56,13 @@
              :sitemap-style 'list
              :sitemap-sort-files 'anti-chronologically)
        (list "site-static"
-             :base-directory "."
+             :base-directory "./_assets"
              :exclude "public/"
              :base-extension site-attachments
              :publishing-directory "./public"
              :publishing-function 'org-publish-attachment
              :recursive t)
-       (list "site" :components '("site-org"))))
+       (list "site" :components '("site-org" "site-static"))))
 
 (provide 'publish)
 ;;; publish.el ends here
