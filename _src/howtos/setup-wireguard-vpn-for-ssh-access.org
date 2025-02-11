@@ -1,0 +1,275 @@
+#+SETUPFILE: "~/org/personal-web-site/_org-setupfiles/level-1.org"
+#+STARTUP: showall
+#+HTML_LINK_UP: index.html
+#+COMMENT: C-c C-e P p
+#+TITLE: SSH access using WireGuard VPN with SSLH
+
+
+To set up a VPN on FreeBSD 14 with SSH access to your home lab while
+you're at work, and specifically using *SSLH* on port 443 (as a
+multiplexer), you'll configure *WireGuard* to work over *SSLH* and
+enable SSH access over port 443. Then, I'll guide you through the steps
+needed to set up your *iPad* for SSH access using *Termius*.
+
+*** Summary of Steps:
+1. *Configure WireGuard VPN on FreeBSD 14*.
+2. *Configure SSLH to forward WireGuard traffic over port 443*.
+3. *Set up port forwarding on your router*.
+4. *Configure Termius on your iPad to access your home lab via SSH*.
+
+--------------
+
+*** Step 1: Install WireGuard on FreeBSD
+First, install *WireGuard* on your FreeBSD system.
+
+1. *Update and install WireGuard*:
+
+   #+begin_src sh
+   pkg update
+   pkg install wireguard
+   #+end_src
+
+2. *Load WireGuard kernel module*:
+
+   #+begin_src sh
+   kldload wireguard
+   #+end_src
+
+3. *Ensure WireGuard module loads on boot*: Edit =/boot/loader.conf=:
+
+   #+begin_src sh
+   echo 'if_wg_load="YES"' >> /boot/loader.conf
+   #+end_src
+
+--------------
+
+*** Step 2: Generate WireGuard Keys
+Generate the *server* and *client* WireGuard keys.
+
+1. *Generate server keys* on FreeBSD:
+
+   #+begin_src sh
+   wg genkey | tee /usr/local/etc/wireguard/server_private.key | wg pubkey > /usr/local/etc/wireguard/server_public.key
+   #+end_src
+
+2. *Generate client keys* (on the client machine, such as your iPad, or
+   another device you're using):
+
+   #+begin_src sh
+   wg genkey | tee client_private.key | wg pubkey > client_public.key
+   #+end_src
+
+--------------
+
+*** Step 3: Configure WireGuard on FreeBSD Server
+Now, configure WireGuard on your FreeBSD server.
+
+1. *Create WireGuard configuration file*: Create the file
+   =/usr/local/etc/wireguard/wg0.conf=:
+
+   #+begin_src sh
+   nano /usr/local/etc/wireguard/wg0.conf
+   #+end_src
+
+2. *Add WireGuard configuration*: Example configuration for =wg0.conf=:
+
+   #+begin_src ini
+   [Interface]
+   Address = 10.0.0.1/24        # VPN subnet (server IP)
+   ListenPort = 51820            # WireGuard's default port
+   PrivateKey = <server_private_key>
+
+   PostUp = sysctl net.inet.ip.forwarding=1; iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o <network_interface> -j MASQUERADE
+   PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o <network_interface> -j MASQUERADE
+
+   [Peer]
+   PublicKey = <client_public_key>
+   AllowedIPs = 10.0.0.2/32        # Client's VPN IP
+   #+end_src
+
+   *Replace the placeholders:*
+
+   - =<server_private_key>=: The private key from the server.
+   - =<client_public_key>=: The public key from the client (iPad or
+     laptop).
+   - =<network_interface>=: The name of your network interface (e.g.,
+     =em0=, =en0=).
+
+--------------
+
+*** Step 4: Install and Configure SSLH (Multiplexer)
+1. *Install SSLH*:
+
+   #+begin_src sh
+   pkg install sslh
+   #+end_src
+
+2. *Edit SSLH configuration*:
+
+   Open the SSLH configuration file:
+
+   #+begin_src sh
+   nano /usr/local/etc/sslh.cfg
+   #+end_src
+
+3. *Configure SSLH to forward WireGuard traffic over port 443*:
+
+   Add the following lines to configure SSLH for multiplexer usage on
+   port 443:
+
+   #+begin_src ini
+   listen:
+     address: 0.0.0.0
+     port: 443
+
+   protocols:
+     - ssh:
+         priority: 1
+         redirect: 22
+     - https:
+         priority: 2
+         redirect: 443
+     - wireguard:
+         priority: 3
+         redirect: 51820
+   #+end_src
+
+   - This configuration listens on *port 443* and forwards incoming
+     WireGuard traffic to port *51820*.
+   - It also supports *SSH* (port 22) and *HTTPS* (port 443) for other
+     services.
+
+4. *Start SSLH*:
+
+   #+begin_src sh
+   service sslh start
+   #+end_src
+
+   Enable it to start on boot:
+
+   #+begin_src sh
+   echo 'sslh_enable="YES"' >> /etc/rc.conf
+   #+end_src
+
+5. *Check the status of SSLH*:
+
+   #+begin_src sh
+   service sslh status
+   #+end_src
+
+--------------
+
+*** Step 5: Set Up Port Forwarding on Your Router
+Make sure to forward *port 443* from your router to the internal IP
+address of your FreeBSD server.
+
+1. *Log into your router* and configure port forwarding.
+   - Forward UDP port *443* to the internal IP address of your FreeBSD
+     server where SSLH is running.
+
+--------------
+
+*** Step 6: Configure the Client (iPad) for SSH Access
+For your iPad, you'll use *Termius* (an SSH client) to access your
+FreeBSD server.
+
+1. *Install Termius* from the *App Store* on your iPad.
+
+2. *Configure the Termius app for SSH access*:
+
+   - Open *Termius* and go to the *Hosts* tab.
+   - Tap on *Add New Host*.
+
+   Set up the SSH connection:
+
+   - *Host*: Enter the public IP address of your home server (the one
+     your router forwards port 443 to).
+   - *Port*: Enter *443* (as SSLH will forward WireGuard traffic through
+     this port).
+   - *Username*: Enter the SSH username on your FreeBSD server.
+   - *Authentication*: Use either password or SSH key authentication
+     (depending on your SSH setup).
+
+   Example:
+
+   - Host: =your-home-server-public-ip=
+   - Port: =443=
+   - Username: =your-ssh-username=
+   - Password/Key: (depending on your setup)
+
+3. *SSH Configuration for WireGuard*: Once you are connected via SSH,
+   you can also set up your *WireGuard client* configuration. On your
+   iPad, you will need to set up the WireGuard VPN to connect through
+   the same port 443.
+
+--------------
+
+*** Step 7: Set Up WireGuard on the Client (iPad)
+To connect to the WireGuard VPN from your iPad, you'll need to use a
+WireGuard client app (available in the App Store).
+
+1. *Install the WireGuard app* from the App Store.
+
+2. *Configure the WireGuard client on the iPad*:
+
+   - Open the *WireGuard* app and tap *Add Tunnel* > *Create from
+     scratch*.
+
+   - Configure the *client* as follows:
+
+     #+begin_src ini
+     [Interface]
+     PrivateKey = <client_private_key>
+     Address = 10.0.0.2/24        # Client IP within VPN subnet
+
+     [Peer]
+     PublicKey = <server_public_key>
+     Endpoint = <your_home_public_ip>:443  # The public IP and port of your server (443, SSLH is handling the multiplexer)
+     AllowedIPs = 0.0.0.0/0        # Route all traffic through the VPN
+     PersistentKeepalive = 25      # Keeps the connection alive
+     #+end_src
+
+   *Replace the placeholders*:
+
+   - =<client_private_key>=: Your client private key.
+   - =<server_public_key>=: The server's public key.
+   - =<your_home_public_ip>=: The public IP of your FreeBSD server.
+
+3. *Activate the WireGuard Tunnel*: Tap *Activate* to connect the
+   WireGuard VPN.
+
+--------------
+
+*** Step 8: Test the Connection
+1. *Verify the VPN connection*:
+   - On the iPad, make sure the WireGuard tunnel is active.
+   - Test the VPN by pinging the server's WireGuard IP (e.g.,
+     =10.0.0.1=).
+2. *SSH into your FreeBSD server*:
+   - Open Termius and connect to your server over port 443.
+   - You should be able to access your server using SSH.
+
+--------------
+
+*** Troubleshooting Tips:
+1. *Firewall Issues*:
+   - Ensure that *port 443* is open on both your router and FreeBSD
+     server.
+   - If using =pf=, check your firewall rules to ensure that traffic on
+     port 443 is allowed.
+2. *SSLH Logs*:
+   - Check *SSLH* logs if you're having trouble with multiplexing:
+
+     #+begin_src sh
+     tail -f /var/log/sslh.log
+     #+end_src
+
+3. *Connection Drops*:
+   - If your connection is unstable, check your WireGuard client's
+     configuration for any misconfigurations in the
+     =PersistentKeepalive= setting.
+
+By following these steps, you can securely set up a VPN on your FreeBSD
+server using *WireGuard* and *SSLH* on port 443, and connect to it from
+your *iPad* using *Termius* for SSH access to your home lab while you're
+at work.
